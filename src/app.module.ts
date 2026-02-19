@@ -3,10 +3,11 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { MongooseModule } from '@nestjs/mongoose';
 import { UsersModule } from './users/users.module';
-
+import { ConfigModule } from '@nestjs/config';
 @Module({
   imports: [
-       MongooseModule.forRoot('mongodb+srv://application_first_nest:123123123@cluster0.vb6qksk.mongodb.net/two-nest?retryWrites=true&w=majority'),
+    ConfigModule.forRoot() ,
+       MongooseModule.forRoot(process.env.MONGO_CONNECTION!),
        UsersModule
   ],
   controllers: [AppController],

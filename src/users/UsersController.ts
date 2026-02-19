@@ -1,5 +1,5 @@
 // users/users.controller.ts
-import { Controller, Get, Post, Body } from '@nestjs/common';
+import { Controller, Get, Post, Body , Param } from '@nestjs/common';
 import { UsersService } from './UsersService';
 import { User } from './schemas/user.schema';
 
@@ -15,5 +15,10 @@ export class UsersController {
   @Get()
   findAll(): Promise<User[]> {
     return this.usersService.findAll();
+  }
+
+  @Get(':id')
+  findOne(@Param('id') id: string): Promise<User> {
+    return this.usersService.findOne(id);
   }
 }
